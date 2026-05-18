@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#7a3000",
+                    "on-tertiary": "#313030",
+                    "on-primary": "#561f00",
+                    "surface-container-low": "#261812",
+                    "on-surface": "#f8ddd2",
+                    "inverse-primary": "#a04100",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary-fixed": "#ffdbcc",
+                    "primary-container": "#ff6b00",
+                    "inverse-surface": "#f8ddd2",
+                    "on-error-container": "#ffdad6",
+                    "outline": "#a98a7d",
+                    "outline-variant": "#5a4136",
+                    "on-secondary": "#2f3131",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary": "#ffb693",
+                    "surface-variant": "#41312a",
+                    "inverse-on-surface": "#3d2d26",
+                    "background": "#1d100a",
+                    "tertiary-container": "#9a9898",
+                    "error": "#ffb4ab",
+                    "surface": "#1d100a",
+                    "secondary-container": "#454747",
+                    "on-primary-container": "#572000",
+                    "surface-container-lowest": "#170b06",
+                    "surface-container": "#2b1c16",
+                    "surface-dim": "#1d100a",
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "surface-tint": "#ffb693",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-error": "#690005",
+                    "tertiary-fixed": "#e5e2e1",
+                    "secondary": "#c6c6c7",
+                    "surface-bright": "#46362e",
+                    "on-surface-variant": "#e2bfb0",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-container-highest": "#41312a",
+                    "surface-container-high": "#362720",
+                    "on-tertiary-container": "#313131",
+                    "on-primary-fixed": "#351000",
+                    "tertiary": "#c8c6c5",
+                    "on-secondary-container": "#b4b5b5",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "on-background": "#f8ddd2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "border-thick": "2px",
+                    "border-heavy": "4px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "container-max": "1440px",
+                    "margin": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "body-base": ["Inter"],
+                    "data-mono": ["Inter"],
+                    "headline-md": ["Space Grotesk"],
+                    "display-lg": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "data-mono": ["18px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .warning-stripes {
+            background: repeating-linear-gradient(
+                45deg,
+                #ff6b00,
+                #ff6b00 10px,
+                #1d100a 10px,
+                #1d100a 20px
+            );
+        }
+        .recessed-slot {
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .glow-active {
+            filter: drop-shadow(0 0 8px #ffb693);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-base">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface border-b-thick border-outline-variant">
+<div class="flex justify-between items-center w-full px-gutter py-unit max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<h1 class="font-label-caps text-label-caps tracking-widest text-primary uppercase">VOLT_CORE v2.4</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="bluetooth_connected">bluetooth_connected</span>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-32 px-4 max-w-md mx-auto space-y-6">
+<!-- Warranty & Registration Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary" data-icon="verified_user">verified_user</span>
+<h2 class="font-headline-md text-headline-md uppercase">SYSTEM ASSETS</h2>
+</div>
+<!-- Product Card -->
+<div class="bg-surface-container border-thick border-outline-variant">
+<div class="bg-surface-container-highest px-3 py-1 flex justify-between items-center border-b-thick border-outline-variant">
+<span class="font-label-caps text-label-caps uppercase">CORE_CHASSIS_01</span>
+<span class="font-label-caps text-label-caps text-primary">ACTIVE</span>
+</div>
+<div class="p-4 flex gap-4">
+<div class="w-24 h-24 bg-surface-container-low border-thick border-outline-variant flex items-center justify-center relative overflow-hidden">
+<img class="w-16 h-16 opacity-80" data-alt="A macro shot of a rugged industrial power battery module with metallic textures and orange warning labels. The lighting is harsh and dramatic, highlighting the heavy-duty bolts and reinforced casing. The overall aesthetic is tactical and utilitarian with a color palette of deep charcoals and safety orange." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4aMmSvliEdKH_LZIQOPjdiA_9_sFxV5vcTQMK3QKl8cQoGj8iRgVkUIdeWSJ8hJ_P4am8IH749gn9cX2aMqWqqe6-4IrtaGvG1qjQW8PkINZp8NLsN8KF95spGm5tVbg--NJM_UezxLJKOnWyGVHXhMnfSf3Wl8GV9RZPOkiGRbDmBOx_sW9UirtQQnGXJUK09b6eP3CsFVwHPCeciI2160EP4_biZtGoe0wqrXQ80A6FL5SRd8QBXn4tDNipXCOkYBlNwUa4Q7k"/>
+</div>
+<div class="flex-1 space-y-2">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">SERIAL NUMBER</p>
+<p class="font-data-mono text-data-mono">VC-992-TX-8801</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">WARRANTY STATUS</p>
+<p class="font-data-mono text-data-mono text-primary">742 DAYS REMAINING</p>
+</div>
+</div>
+</div>
+<div class="px-4 pb-4">
+<button class="w-full py-3 bg-surface-container-highest border-thick border-outline text-on-surface font-label-caps text-label-caps uppercase hover:bg-outline-variant transition-colors active:scale-95">
+                        DOWNLOAD CERTIFICATE
+                    </button>
+</div>
+</div>
+<!-- Registration Input -->
+<div class="bg-surface-container border-thick border-outline-variant p-4 space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-label-caps text-label-caps uppercase">REGISTER NEW MODULE</h3>
+</div>
+<div class="recessed-slot bg-surface-container-low border-b-thick border-primary p-3">
+<input class="bg-transparent border-none text-on-surface placeholder:text-outline-variant w-full font-data-mono text-data-mono focus:ring-0" placeholder="ENTER ACTIVATION KEY..." type="text"/>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-caps text-label-caps uppercase font-bold hover:brightness-110 transition-all border-heavy border-on-primary-container">
+                    INITIALIZE REGISTRATION
+                </button>
+</div>
+</section>
+<!-- Storm-Watch Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="thunderstorm">thunderstorm</span>
+<h2 class="font-headline-md text-headline-md uppercase">STORM_WATCH</h2>
+</div>
+<!-- High Alert Panel -->
+<div class="border-heavy border-primary-container overflow-hidden bg-surface-container">
+<div class="warning-stripes h-6 w-full"></div>
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h3 class="font-display-lg text-display-lg leading-none uppercase">READY</h3>
+<p class="font-body-base text-body-base text-on-surface-variant">Grid Failure Preparedness System</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary glow-active"></div>
+<span class="font-label-caps text-label-caps">LIVE</span>
+</div>
+</div>
+<!-- Tactical Toggle -->
+<div class="flex items-center justify-between p-4 bg-surface-container-highest border-thick border-outline-variant">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase">STORM_WATCH_MODE</span>
+<span class="text-[10px] text-primary font-bold uppercase">MAXIMUM_RESERVE_PRIORITY</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-container-low border-thick border-outline-variant peer-focus:outline-none rounded-none peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-outline-variant after:border-none after:h-6 after:w-6 after:transition-all peer-checked:bg-primary-container peer-checked:after:bg-on-primary-container"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-3 border-thick border-outline-variant bg-surface-container-low">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">LOCAL_RADAR</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="cloud">cloud</span>
+<span class="font-data-mono text-data-mono">CLEAR</span>
+</div>
+</div>
+<div class="p-3 border-thick border-outline-variant bg-surface-container-low">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">GRID_LOAD</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="electric_bolt">electric_bolt</span>
+<span class="font-data-mono text-data-mono">42%</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-caps text-[10px] uppercase text-outline-variant">
+<span>RESERVE_CAPACITY</span>
+<span>90% TARGET</span>
+</div>
+<!-- Segmented Progress Gauge -->
+<div class="flex gap-1 h-4">
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-primary border border-on-primary-container"></div>
+<div class="flex-1 bg-surface-container-highest border border-outline-variant"></div>
+<div class="flex-1 bg-surface-container-highest border border-outline-variant"></div>
+</div>
+</div>
+</div>
+<div class="warning-stripes h-2 w-full"></div>
+</div>
+<!-- Weather Alert Feed -->
+<div class="space-y-2">
+<p class="font-label-caps text-label-caps uppercase text-on-surface-variant px-1">SYSTEM_LOGS</p>
+<div class="bg-surface-container border-thick border-outline-variant p-3 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<p class="font-body-base text-body-base">Storm-Watch protocol updated: Region 04 alert thresholds adjusted.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container border-t-thick border-outline-variant flex justify-around items-center px-gutter py-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps uppercase">MONITOR</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="battery_charging_full">battery_charging_full</span>
+<span class="font-label-caps text-label-caps uppercase">CHARGE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="electrical_services">electrical_services</span>
+<span class="font-label-caps text-label-caps uppercase">DEVICES</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary border-heavy border-on-primary-container p-2 ring-2 ring-primary-container" href="#">
+<span class="material-symbols-outlined" data-icon="thunderstorm" data-weight="fill" style="font-variation-settings: 'FILL' 1;">thunderstorm</span>
+<span class="font-label-caps text-label-caps uppercase">STORM</span>
+</a>
+</nav>
+</body></html>

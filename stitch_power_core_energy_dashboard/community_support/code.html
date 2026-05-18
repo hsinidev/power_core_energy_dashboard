@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VOLT_CORE v2.4 | Support &amp; Field Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #1d100a;
+            color: #f8ddd2;
+        }
+        /* Tactical Utility Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1d100a; }
+        ::-webkit-scrollbar-thumb { background: #41312a; border: 2px solid #1d100a; }
+        
+        .industrial-glow:hover {
+            box-shadow: 0 0 0px 2px #ffb693;
+        }
+        .segmented-progress {
+            display: flex;
+            gap: 2px;
+        }
+        .segment {
+            height: 8px;
+            width: 12px;
+            background-color: #41312a;
+        }
+        .segment-active {
+            background-color: #ffb693;
+            box-shadow: 0 0 8px #ffb693;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#f8ddd2",
+                      "secondary-fixed": "#e2e2e2",
+                      "primary-fixed": "#ffdbcc",
+                      "primary-container": "#ff6b00",
+                      "inverse-primary": "#a04100",
+                      "on-tertiary": "#313030",
+                      "on-primary-fixed-variant": "#7a3000",
+                      "on-primary": "#561f00",
+                      "surface-container-low": "#261812",
+                      "on-error-container": "#ffdad6",
+                      "outline": "#a98a7d",
+                      "outline-variant": "#5a4136",
+                      "on-secondary": "#2f3131",
+                      "inverse-surface": "#f8ddd2",
+                      "tertiary-container": "#9a9898",
+                      "background": "#1d100a",
+                      "error": "#ffb4ab",
+                      "surface": "#1d100a",
+                      "primary": "#ffb693",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "on-secondary-fixed-variant": "#454747",
+                      "surface-variant": "#41312a",
+                      "inverse-on-surface": "#3d2d26",
+                      "secondary-container": "#454747",
+                      "on-primary-container": "#572000",
+                      "surface-container-lowest": "#170b06",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "error-container": "#93000a",
+                      "surface-tint": "#ffb693",
+                      "surface-container": "#2b1c16",
+                      "surface-dim": "#1d100a",
+                      "on-error": "#690005",
+                      "primary-fixed-dim": "#ffb693",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "surface-container-highest": "#41312a",
+                      "tertiary-fixed": "#e5e2e1",
+                      "surface-bright": "#46362e",
+                      "secondary": "#c6c6c7",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-surface-variant": "#e2bfb0",
+                      "surface-container-high": "#362720",
+                      "on-tertiary-container": "#313131",
+                      "on-primary-fixed": "#351000",
+                      "tertiary": "#c8c6c5",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "on-secondary-container": "#b4b5b5",
+                      "on-background": "#f8ddd2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "border-thick": "2px",
+                      "border-heavy": "4px",
+                      "unit": "4px",
+                      "margin": "24px",
+                      "container-max": "1440px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "display-lg": ["Space Grotesk"],
+                      "data-mono": ["Inter"],
+                      "body-base": ["Inter"],
+                      "headline-md": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "data-mono": ["18px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-base": ["16px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-base text-body-base">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface border-b-thick border-outline dark:border-outline-variant docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-gutter py-unit max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary">bolt</span>
+<h1 class="font-label-caps text-label-caps tracking-widest text-primary dark:text-primary">VOLT_CORE v2.4</h1>
+</div>
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-variant dark:hover:bg-surface-variant p-2 transition-all" href="#">MONITOR</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-variant dark:hover:bg-surface-variant p-2 transition-all" href="#">CHARGE</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-variant dark:hover:bg-surface-variant p-2 transition-all" href="#">DEVICES</a>
+<a class="text-primary dark:text-primary font-label-caps text-label-caps bg-surface-variant dark:bg-surface-variant border-heavy border-primary p-2 transition-all" href="#">STORM</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary">bluetooth_connected</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter py-12">
+<!-- Search & Hero Section -->
+<div class="mb-12 border-heavy border-outline-variant p-8 bg-surface-container-lowest relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-display-lg text-display-lg text-primary mb-4">TERMINAL SUPPORT_</h2>
+<p class="font-body-base text-on-surface-variant mb-8 max-w-2xl">Access centralized technical documentation, field-validated troubleshooting protocols, and direct-line deployment synchronization for VOLT_CORE hardware clusters.</p>
+<div class="flex items-center gap-0 max-w-xl border-heavy border-primary bg-surface shadow-[4px_4px_0px_0px_#ffb693]">
+<div class="px-4 flex items-center border-r-thick border-primary">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-label-caps p-4 placeholder:text-on-surface-variant/40" placeholder="QUERY KNOWLEDGE BASE (E.G. 'GRID SYNC ERROR')" type="text"/>
+</div>
+</div>
+<!-- Decorative background pattern -->
+<div class="absolute right-0 top-0 w-64 h-full opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, #ffb693, #ffb693 2px, transparent 2px, transparent 10px);"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Technical FAQ Section -->
+<section class="md:col-span-8 space-y-8">
+<div class="border-b-heavy border-primary pb-2 flex justify-between items-end">
+<h3 class="font-headline-md text-headline-md text-on-surface">HARDWARE_TROUBLESHOOTING</h3>
+<span class="font-label-caps text-label-caps text-primary pb-1">V2.4_STABLE</span>
+</div>
+<!-- FAQ Accordion Block 1 -->
+<div class="border-thick border-outline-variant bg-surface-container-low group hover:border-primary transition-colors">
+<button class="w-full text-left p-6 flex justify-between items-center bg-surface-container-highest/20">
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-data-mono text-primary">01</span>
+<span class="font-headline-md text-[18px] tracking-wide">PHASE-LINK DESYNCHRONIZATION IN HIGH-HEAT ENVIRONMENTS</span>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform">expand_more</span>
+</button>
+<div class="p-6 border-t-thick border-outline-variant font-body-base text-on-surface-variant leading-relaxed">
+<p class="mb-4">Internal thermistors may trigger a safety lockout if the DC-link capacitor exceeds 85°C. Field technicians should verify active cooling fan RPMs via the diagnostic port before attempting a manual reset.</p>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-variant text-label-caps text-primary border border-primary">LATCH_ERROR</span>
+<span class="px-2 py-1 bg-surface-variant text-label-caps text-secondary border border-outline">THERMAL_GATE</span>
+</div>
+</div>
+</div>
+<!-- FAQ Accordion Block 2 -->
+<div class="border-thick border-outline-variant bg-surface-container-low group hover:border-primary transition-colors">
+<button class="w-full text-left p-6 flex justify-between items-center bg-surface-container-highest/20">
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-data-mono text-primary">02</span>
+<span class="font-headline-md text-[18px] tracking-wide">COMMUNICATION LAG DURING STORM_MODE ENGAGEMENT</span>
+</div>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</button>
+<div class="p-6 border-t-thick border-outline-variant font-body-base text-on-surface-variant hidden">
+<!-- Accordion collapsed state -->
+</div>
+</div>
+<!-- FAQ Accordion Block 3 -->
+<div class="border-thick border-outline-variant bg-surface-container-low group hover:border-primary transition-colors">
+<button class="w-full text-left p-6 flex justify-between items-center bg-surface-container-highest/20">
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-data-mono text-primary">03</span>
+<span class="font-headline-md text-[18px] tracking-wide">BATTERY ARRAY COULOMB-COUNTER RECALIBRATION</span>
+</div>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</button>
+</div>
+<!-- Field Community / Comments -->
+<div class="mt-16">
+<div class="border-b-heavy border-primary pb-2 mb-8 flex justify-between items-end">
+<h3 class="font-headline-md text-headline-md text-on-surface">FIELD_DEBRIES_LOGS</h3>
+<div class="flex gap-4">
+<button class="font-label-caps text-label-caps text-primary hover:underline">NEWEST</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:underline">CRITICAL</button>
+</div>
+</div>
+<!-- Threaded Comment 1 -->
+<div class="space-y-4">
+<div class="border-heavy border-outline p-6 bg-surface-container-high relative">
+<div class="absolute -left-2 top-4 w-4 h-4 bg-primary"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 border-thick border-primary bg-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-weight="fill">engineering</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-primary flex items-center gap-2">
+<span>TECH_LEAD_RHO</span>
+<span class="text-[10px] bg-primary text-on-primary px-1">VERIFIED</span>
+</div>
+<div class="text-[10px] text-on-surface-variant font-data-mono">DEPLOYMENT_SITE: OMEGA-4</div>
+</div>
+</div>
+<span class="font-data-mono text-[12px] text-on-surface-variant">2024.05.12_14:30</span>
+</div>
+<p class="font-body-base text-on-surface mb-4">Discovered that the magnetic shielding on the V2.4 casing can interfere with older compass-based calibration tools. Recommendation: Switch to GPS-locked alignment for all Storm-ready arrays.</p>
+<div class="flex gap-4 border-t border-outline-variant pt-4">
+<button class="flex items-center gap-1 font-label-caps text-label-caps text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[16px]">thumb_up</span> 42_ACK
+                                </button>
+<button class="flex items-center gap-1 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">reply</span> THREAD
+                                </button>
+</div>
+</div>
+<!-- Nested Comment -->
+<div class="ml-12 border-l-heavy border-outline-variant pl-6">
+<div class="border-thick border-outline-variant p-4 bg-surface-container-low">
+<div class="flex justify-between items-start mb-2">
+<div class="font-label-caps text-label-caps text-on-surface-variant">J_VOIGHT_OPS</div>
+<span class="font-data-mono text-[10px] text-on-surface-variant">2 HOURS AGO</span>
+</div>
+<p class="font-body-base text-[14px] text-on-surface-variant italic">Confirmed this in Arctic sector last week. Calibration offset was nearly 4.5 degrees.</p>
+</div>
+</div>
+</div>
+<!-- Comment Input -->
+<div class="mt-8 border-heavy border-primary p-6 bg-surface shadow-[inset_0px_0px_20px_rgba(255,182,147,0.05)]">
+<label class="font-label-caps text-label-caps text-primary mb-2 block">APPEND_NEW_TECHNICAL_DATA</label>
+<textarea class="w-full bg-surface-container-lowest border-thick border-outline-variant focus:border-primary focus:ring-0 text-on-surface font-body-base p-4" placeholder="ENTER TELEMETRY OR DEPLOYMENT NOTES..." rows="4"></textarea>
+<div class="mt-4 flex justify-end">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-8 py-3 border-heavy border-on-primary hover:bg-white hover:text-black transition-all active:scale-95 duration-75">TRANSMIT_LOG</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Info Panels -->
+<aside class="md:col-span-4 space-y-8">
+<!-- System Health Widget -->
+<div class="border-thick border-outline bg-surface-container-low overflow-hidden">
+<div class="bg-primary px-4 py-2 flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-primary">GLOBAL_STATUS</span>
+<span class="material-symbols-outlined text-on-primary text-[16px]">sensors</span>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps">GRID_CONNECT</span>
+<div class="flex items-center gap-2">
+<span class="font-data-mono text-primary">OPTIMAL</span>
+<div class="w-3 h-3 bg-primary rounded-full shadow-[0_0_8px_#ffb693]"></div>
+</div>
+</div>
+<div class="segmented-progress">
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment"></div>
+<div class="segment"></div>
+<div class="segment"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant font-data-mono">LATENCY: 14ms | BANDWIDTH: 98%</p>
+</div>
+</div>
+<!-- Featured Hardware Card -->
+<div class="border-thick border-outline-variant bg-surface relative group cursor-pointer">
+<div class="h-48 overflow-hidden relative">
+<img alt="Industrial power terminal" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A high-tech industrial power management unit inside a clean, modern factory setting. The hardware is constructed from brushed aluminum and heavy-duty charcoal composites, with orange LED status lights glowing intensely. The lighting is dramatic, highlighting the rugged textures and technical complexity of the machine's cooling fins and high-voltage ports. The mood is powerful and industrial, dominated by blacks, greys, and vibrant orange accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4lGQ1kp0d4zdaRzMgTnqADHf5abZsuVplOxQmCvzqXLH-YPB_LEnewCwDVgLYKmzuFzaBn8Lo8IPZRHOPjZkp8Hmpt8Dh17j2ZT4MNy1orfk2pDMqDciq5JhxTHkFlAK5KzaTSgDsIYa-rsJoO_zHbPuppQ6wMimAnnKlUNyNXLGwfTcyE9btqkeyn2nPJ7TMlJIN4jqR2QDoWhpSRtfpk6H1EoKyfNvGzCz97vubYdvcCe0OD6RSMpeVlZxU68c4fStSYHGr1Mc"/>
+<div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent"></div>
+</div>
+<div class="p-4 border-t-thick border-outline-variant">
+<div class="font-label-caps text-label-caps text-primary mb-1">UNIT_FOCUS</div>
+<h4 class="font-headline-md text-[18px] mb-2">V2.4 CORE CHASSIS</h4>
+<p class="text-[12px] text-on-surface-variant mb-4">New reinforced structural brackets for high-seismic zone installation. Mandatory for offshore deployments.</p>
+<button class="w-full border-thick border-primary py-2 font-label-caps text-label-caps hover:bg-primary hover:text-black transition-colors">VIEW_SCHEMATICS</button>
+</div>
+</div>
+<!-- Field Manuals -->
+<div class="border-thick border-outline-variant p-6 bg-surface-container-low">
+<h4 class="font-label-caps text-label-caps text-on-surface mb-6 border-b border-outline-variant pb-2">CRITICAL_RESOURCES</h4>
+<ul class="space-y-4">
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="font-body-base text-on-surface-variant group-hover:text-primary transition-colors">Emergency Shut-Off PDF</span>
+<span class="material-symbols-outlined text-[18px]">download</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="font-body-base text-on-surface-variant group-hover:text-primary transition-colors">Pinout Diagrams v1.2</span>
+<span class="material-symbols-outlined text-[18px]">download</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="font-body-base text-on-surface-variant group-hover:text-primary transition-colors">High-Voltage Safety Kit</span>
+<span class="material-symbols-outlined text-[18px]">launch</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Community Contributors -->
+<div class="border-thick border-outline p-6 bg-surface-container-low">
+<h4 class="font-label-caps text-label-caps text-primary mb-4">TOP_RESPONDERS</h4>
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-2 border border-outline-variant px-2 py-1 bg-surface">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="font-label-caps text-[10px]">ALPHA_6</span>
+</div>
+<div class="flex items-center gap-2 border border-outline-variant px-2 py-1 bg-surface">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="font-label-caps text-[10px]">FIXER_GRID</span>
+</div>
+<div class="flex items-center gap-2 border border-outline-variant px-2 py-1 bg-surface">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="font-label-caps text-[10px]">NODE_MASTER</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar -->
+<footer class="bg-surface-container dark:bg-surface-container border-t-thick border-outline dark:border-outline-variant fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-2 md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-caps text-label-caps">MONITOR</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">battery_charging_full</span>
+<span class="font-label-caps text-label-caps">CHARGE</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">electrical_services</span>
+<span class="font-label-caps text-label-caps">DEVICES</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary dark:bg-primary dark:text-on-primary border-heavy border-on-primary-container p-2 ring-2 ring-primary-container">
+<span class="material-symbols-outlined">thunderstorm</span>
+<span class="font-label-caps text-label-caps">STORM</span>
+</button>
+</footer>
+<!-- Bottom Margin for Fixed Nav -->
+<div class="h-20 md:h-0"></div>
+</body></html>

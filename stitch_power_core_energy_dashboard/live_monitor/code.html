@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VOLT_CORE v2.4 | LIVE MONITOR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#7a3000",
+                    "on-tertiary": "#313030",
+                    "on-primary": "#561f00",
+                    "surface-container-low": "#261812",
+                    "on-surface": "#f8ddd2",
+                    "inverse-primary": "#a04100",
+                    "secondary-fixed": "#e2e2e2",
+                    "primary-fixed": "#ffdbcc",
+                    "primary-container": "#ff6b00",
+                    "inverse-surface": "#f8ddd2",
+                    "on-error-container": "#ffdad6",
+                    "outline": "#a98a7d",
+                    "outline-variant": "#5a4136",
+                    "on-secondary": "#2f3131",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "on-secondary-fixed-variant": "#454747",
+                    "primary": "#ffb693",
+                    "surface-variant": "#41312a",
+                    "inverse-on-surface": "#3d2d26",
+                    "background": "#1d100a",
+                    "tertiary-container": "#9a9898",
+                    "error": "#ffb4ab",
+                    "surface": "#1d100a",
+                    "secondary-container": "#454747",
+                    "on-primary-container": "#572000",
+                    "surface-container-lowest": "#170b06",
+                    "surface-container": "#2b1c16",
+                    "surface-dim": "#1d100a",
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "surface-tint": "#ffb693",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-error": "#690005",
+                    "tertiary-fixed": "#e5e2e1",
+                    "secondary": "#c6c6c7",
+                    "surface-bright": "#46362e",
+                    "on-surface-variant": "#e2bfb0",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "surface-container-highest": "#41312a",
+                    "surface-container-high": "#362720",
+                    "on-tertiary-container": "#313131",
+                    "on-primary-fixed": "#351000",
+                    "tertiary": "#c8c6c5",
+                    "on-secondary-container": "#b4b5b5",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "on-background": "#f8ddd2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "border-thick": "2px",
+                    "border-heavy": "4px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "container-max": "1440px",
+                    "margin": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "body-base": ["Inter"],
+                    "data-mono": ["Inter"],
+                    "headline-md": ["Space Grotesk"],
+                    "display-lg": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-base": ["16px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "data-mono": ["18px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-orange {
+            filter: drop-shadow(0 0 4px #ff6b00);
+        }
+        .glow-active {
+            filter: drop-shadow(0 0 8px #ffb693);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-base antialiased min-h-screen pb-24">
+<!-- TopAppBar -->
+<nav class="bg-surface border-b-thick border-outline dark:border-outline-variant docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-gutter py-unit max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<span class="font-label-caps text-label-caps tracking-widest text-primary">VOLT_CORE v2.4</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-3 py-1 border-thick border-outline">
+<span class="material-symbols-outlined text-primary glow-orange" data-icon="bluetooth_connected">bluetooth_connected</span>
+<span class="font-label-caps text-label-caps text-primary">ACTIVE</span>
+</div>
+</div>
+</nav>
+<main class="px-gutter py-gutter flex flex-col gap-6 max-w-lg mx-auto">
+<!-- Live System Overview (Flow Diagram) -->
+<section class="grid grid-cols-1 gap-4">
+<!-- Inputs Panel -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container border-thick border-outline-variant p-3 relative overflow-hidden">
+<div class="bg-surface-variant absolute top-0 left-0 right-0 h-6 px-2 flex items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">INPUT: SOLAR</span>
+</div>
+<div class="mt-8 flex flex-col items-center">
+<span class="font-display-lg text-[32px] text-primary">482W</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">24.5V | 19.6A</span>
+</div>
+<!-- Flow Line Down -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-border-thick h-4 bg-gradient-to-b from-primary-container to-transparent"></div>
+</div>
+<div class="bg-surface-container border-thick border-outline-variant p-3 relative">
+<div class="bg-surface-variant absolute top-0 left-0 right-0 h-6 px-2 flex items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">INPUT: AC</span>
+</div>
+<div class="mt-8 flex flex-col items-center">
+<span class="font-display-lg text-[32px] text-on-surface-variant opacity-50">0W</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant opacity-30">OFFLINE</span>
+</div>
+</div>
+</div>
+<!-- Central Battery Gauge -->
+<div class="bg-surface-container border-heavy border-primary-container p-6 flex flex-col items-center justify-center relative">
+<div class="absolute top-2 left-2 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary glow-orange"></div>
+<span class="font-label-caps text-label-caps text-primary">CORE MONITOR</span>
+</div>
+<!-- Heavy Industrial Segmented Gauge -->
+<div class="relative w-56 h-56 flex items-center justify-center">
+<!-- Outer Plate Detail -->
+<div class="absolute inset-0 border-heavy border-outline-variant rounded-full opacity-20"></div>
+<div class="text-center z-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">CAPACITY</span>
+<h1 class="font-display-lg text-display-lg text-primary leading-none">84%</h1>
+<div class="mt-2 flex gap-1 justify-center">
+<div class="h-1 w-4 bg-primary"></div>
+<div class="h-1 w-4 bg-primary"></div>
+<div class="h-1 w-4 bg-primary"></div>
+<div class="h-1 w-4 bg-primary"></div>
+<div class="h-1 w-4 bg-primary"></div>
+<div class="h-1 w-4 bg-outline-variant"></div>
+</div>
+</div>
+<!-- Flow Visuals -->
+<div class="absolute -top-4 w-1 h-6 bg-primary-container shadow-[0_0_10px_#ff6b00]"></div>
+<div class="absolute -bottom-4 w-1 h-6 bg-primary-container shadow-[0_0_10px_#ff6b00]"></div>
+</div>
+<div class="w-full mt-6 grid grid-cols-2 gap-4 border-t-thick border-outline-variant pt-4">
+<div class="text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">REMAINING</span>
+<span class="font-data-mono text-data-mono text-primary block">14H 22M</span>
+</div>
+<div class="text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TEMP</span>
+<span class="font-data-mono text-data-mono text-primary block">32.4°C</span>
+</div>
+</div>
+</div>
+<!-- Outputs Panel -->
+<div class="bg-surface-container border-thick border-outline-variant p-4">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">OUTPUT CHANNELS</span>
+<span class="font-label-caps text-label-caps text-primary">TOTAL: 112W</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center p-2 bg-surface-container-low border-thick border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="electrical_services">electrical_services</span>
+<span class="font-label-caps text-label-caps">AC PLUGS</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-data-mono text-primary">85W</span>
+<div class="w-10 h-5 bg-primary-container flex items-center justify-end px-1 border-thick border-on-primary">
+<div class="w-3 h-3 bg-on-primary"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container-low border-thick border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="usb">usb</span>
+<span class="font-label-caps text-label-caps">USB-C PD</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-data-mono text-primary">27W</span>
+<div class="w-10 h-5 bg-primary-container flex items-center justify-end px-1 border-thick border-on-primary">
+<div class="w-3 h-3 bg-on-primary"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container-low border-thick border-outline-variant opacity-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+<span class="font-label-caps text-label-caps">12V DC</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-data-mono text-data-mono">0W</span>
+<div class="w-10 h-5 bg-surface-variant flex items-center justify-start px-1 border-thick border-outline-variant">
+<div class="w-3 h-3 bg-on-surface-variant"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- System Logs / Diagnostics Card -->
+<div class="bg-surface-container-high border-thick border-outline p-4 relative overflow-hidden">
+<div class="bg-primary-container absolute top-0 left-0 w-1 h-full"></div>
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps text-on-surface">SYSTEM_LOG_CORE</span>
+</div>
+<div class="font-data-mono text-[10px] text-primary opacity-80 leading-relaxed uppercase">
+                [09:42:01] SOLAR_ARRAY_OPTIMIZED_V2<br/>
+                [09:42:05] BMS_THERMAL_STABLE: 32.4C<br/>
+                [09:42:12] BT_SYNC_SUCCESS_DEVICE_01
+            </div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-2 bg-surface-container border-t-thick border-outline dark:border-outline-variant docked full-width bottom-0">
+<!-- MONITOR - ACTIVE -->
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary border-heavy border-on-primary-container p-2 scale-95 duration-75 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps">MONITOR</span>
+</a>
+<!-- CHARGE -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="battery_charging_full">battery_charging_full</span>
+<span class="font-label-caps text-label-caps">CHARGE</span>
+</a>
+<!-- DEVICES -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="electrical_services">electrical_services</span>
+<span class="font-label-caps text-label-caps">DEVICES</span>
+</a>
+<!-- STORM -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="thunderstorm">thunderstorm</span>
+<span class="font-label-caps text-label-caps">STORM</span>
+</a>
+</nav>
+<!-- Detailed Image Prompt for Background/Vibe -->
+<div class="hidden">
+<img data-alt="A highly detailed close-up shot of an industrial power generator's internal circuitry and cooling fins, bathed in a moody orange and charcoal light. The aesthetic is rugged and technical, with visible bolts, heavy-duty heat sinks, and glowing copper coils. The atmosphere is professional and high-stakes, emphasizing absolute reliability and extreme engineering precision. Thick shadows and high-contrast orange LED accents define the depth of the hardware chassis." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoKUegMTPbgr5iqfQRfJfs-XrtIxvrl1vXBpleqXgvctp04h_Mu-e1bNeTVeMYd4Q_S4ETpNE8itWBVnjgBztYk9NnFm_5tA7xVrcVdw5j5O7rW8ag5Qx-6JtuLCov-3hhSlQZ_WLQ95790L2shsRZeBVGKPID7wscaN_rythh-qJs42XpeP7UAcrT4uxSz6_l2h7-UNSEQcRbnmipcJj3l2S6-CGguO8uvuYQaZwjSnk6MTPV6Vi880hYh3Zu4fy1p1dDCosHLSE"/>
+</div>
+</body></html>

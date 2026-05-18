@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VOLT_CORE v2.4 | LIVE MONITOR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#f8ddd2",
+                      "secondary-fixed": "#e2e2e2",
+                      "primary-fixed": "#ffdbcc",
+                      "primary-container": "#ff6b00",
+                      "inverse-primary": "#a04100",
+                      "on-tertiary": "#313030",
+                      "on-primary-fixed-variant": "#7a3000",
+                      "on-primary": "#561f00",
+                      "surface-container-low": "#261812",
+                      "on-error-container": "#ffdad6",
+                      "outline": "#a98a7d",
+                      "outline-variant": "#5a4136",
+                      "on-secondary": "#2f3131",
+                      "inverse-surface": "#f8ddd2",
+                      "tertiary-container": "#9a9898",
+                      "background": "#1d100a",
+                      "error": "#ffb4ab",
+                      "surface": "#1d100a",
+                      "primary": "#ffb693",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "on-secondary-fixed-variant": "#454747",
+                      "surface-variant": "#41312a",
+                      "inverse-on-surface": "#3d2d26",
+                      "secondary-container": "#454747",
+                      "on-primary-container": "#572000",
+                      "surface-container-lowest": "#170b06",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "error-container": "#93000a",
+                      "surface-tint": "#ffb693",
+                      "surface-container": "#2b1c16",
+                      "surface-dim": "#1d100a",
+                      "on-error": "#690005",
+                      "primary-fixed-dim": "#ffb693",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "surface-container-highest": "#41312a",
+                      "tertiary-fixed": "#e5e2e1",
+                      "surface-bright": "#46362e",
+                      "secondary": "#c6c6c7",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-surface-variant": "#e2bfb0",
+                      "surface-container-high": "#362720",
+                      "on-tertiary-container": "#313131",
+                      "on-primary-fixed": "#351000",
+                      "tertiary": "#c8c6c5",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "on-secondary-container": "#b4b5b5",
+                      "on-background": "#f8ddd2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "border-thick": "2px",
+                      "border-heavy": "4px",
+                      "unit": "4px",
+                      "margin": "24px",
+                      "container-max": "1440px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "display-lg": ["Space Grotesk"],
+                      "data-mono": ["Inter"],
+                      "body-base": ["Inter"],
+                      "headline-md": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "data-mono": ["18px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-base": ["16px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .hazard-pattern {
+            background: repeating-linear-gradient(
+                45deg,
+                #ff6b00,
+                #ff6b00 10px,
+                #1d100a 10px,
+                #1d100a 20px
+            );
+        }
+        .flow-line {
+            position: relative;
+            background: #41312a;
+            overflow: hidden;
+        }
+        .flow-line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, #ffb693, transparent);
+            animation: flow 2s infinite linear;
+        }
+        @keyframes flow {
+            to { left: 100%; }
+        }
+        .segmented-progress div {
+            width: 8%;
+            height: 100%;
+            border-right: 2px solid #1d100a;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-base antialiased min-h-screen pb-24 md:pb-0">
+<!-- Top Navigation Header -->
+<header class="bg-surface border-b-thick border-outline sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter py-unit max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<h1 class="font-label-caps text-label-caps tracking-widest text-primary">VOLT_CORE v2.4</h1>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps text-primary border-b-border-thick border-primary py-2 px-1" href="#">MONITOR</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors py-2 px-1" href="#">CHARGE</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors py-2 px-1" href="#">DEVICES</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors py-2 px-1" href="#">STORM</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bluetooth_connected">bluetooth_connected</span>
+<button class="bg-primary-container text-on-primary-container px-4 py-1 font-label-caps text-[10px] border-border-thick border-on-primary-container active:scale-95 duration-75 transition-transform">SYSTEM UP</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto p-gutter grid grid-cols-12 gap-gutter">
+<!-- Left Column: Source Inputs -->
+<section class="col-span-12 md:col-span-3 space-y-gutter">
+<!-- Solar Input Card -->
+<div class="bg-surface-container border-border-thick border-outline-variant">
+<div class="bg-outline-variant px-4 py-1">
+<h2 class="font-label-caps text-label-caps text-on-surface">INPUT: SOLAR_ARRAY</h2>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-display-lg text-primary">1.2</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">kW</span>
+</div>
+<div class="flow-line h-unit w-full"></div>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">VOLTAGE</p>
+<p class="font-data-mono text-data-mono">48.2 V</p>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">CURRENT</p>
+<p class="font-data-mono text-data-mono">25.0 A</p>
+</div>
+</div>
+</div>
+</div>
+<!-- AC Grid Card -->
+<div class="bg-surface-container border-border-thick border-outline-variant opacity-60">
+<div class="bg-outline-variant px-4 py-1 flex justify-between items-center">
+<h2 class="font-label-caps text-label-caps text-on-surface">INPUT: AC_GRID</h2>
+<span class="w-2 h-2 rounded-full bg-on-surface-variant"></span>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-display-lg text-on-surface-variant">0.0</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">kW</span>
+</div>
+<p class="font-label-caps text-[10px] text-error mt-4">OFFLINE / STANDBY</p>
+</div>
+</div>
+<!-- System Logs -->
+<div class="bg-surface-container-lowest border-border-thick border-outline-variant h-[300px] flex flex-col">
+<div class="bg-surface-container-high px-4 py-1">
+<h2 class="font-label-caps text-label-caps text-on-surface">TELEMETRY_LOG</h2>
+</div>
+<div class="p-4 overflow-y-auto font-data-mono text-[10px] space-y-1 text-outline">
+<p><span class="text-primary">[14:22:01]</span> SOLAR_MPPT_SYNC: ACTIVE</p>
+<p><span class="text-primary">[14:21:45]</span> THERMAL_CORE: 32°C (STABLE)</p>
+<p><span class="text-primary">[14:20:12]</span> INV_MODE: PURE_SINE_WAVE</p>
+<p><span class="text-error">[14:15:33]</span> AC_GRID_LOSS: DETECTED</p>
+<p><span class="text-primary">[14:00:00]</span> SYS_HEARTBEAT: OK</p>
+<p><span class="text-outline-variant">----------------------------</span></p>
+<p><span class="text-primary">[13:58:22]</span> BATT_CALIBRATION_COMPLETED</p>
+</div>
+</div>
+</section>
+<!-- Center Column: Core Battery Visualization -->
+<section class="col-span-12 md:col-span-6 space-y-gutter">
+<div class="bg-surface-container-high border-border-heavy border-primary p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 hazard-pattern h-8 w-32 rotate-45 translate-x-12 -translate-y-4"></div>
+<div class="flex flex-col items-center justify-center py-12">
+<p class="font-label-caps text-label-caps text-primary tracking-[0.4em] mb-4">CAPACITY_REMAINING</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-[120px] leading-none text-primary">84</span>
+<span class="font-display-lg text-display-lg text-primary">%</span>
+</div>
+<div class="w-full max-w-md mt-12 bg-surface-container-lowest h-12 border-border-thick border-outline-variant p-1 flex segmented-progress">
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-primary-container"></div>
+<div class="bg-surface-variant"></div>
+<div class="bg-surface-variant"></div>
+<div class="bg-surface-variant"></div>
+</div>
+<div class="grid grid-cols-3 w-full mt-12 gap-8 text-center">
+<div class="border-l-border-thick border-outline-variant pl-4 text-left">
+<p class="font-label-caps text-[10px] text-on-surface-variant">EST_TIME</p>
+<p class="font-display-lg text-headline-md text-on-surface">14H 22M</p>
+</div>
+<div class="border-l-border-thick border-outline-variant pl-4 text-left">
+<p class="font-label-caps text-[10px] text-on-surface-variant">CORE_TEMP</p>
+<p class="font-display-lg text-headline-md text-on-surface">28.4°C</p>
+</div>
+<div class="border-l-border-thick border-outline-variant pl-4 text-left">
+<p class="font-label-caps text-[10px] text-on-surface-variant">CYCLES</p>
+<p class="font-display-lg text-headline-md text-on-surface">142</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t-border-thick border-outline-variant flex justify-between items-end">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">CURRENT_THROUGHPUT</p>
+<p class="font-data-mono text-headline-md text-primary">+450W <span class="text-label-caps text-on-surface-variant">(NET)</span></p>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-8 py-3 border-border-heavy border-on-primary-container active:scale-95 duration-75 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                        CALIBRATE_CELLS
+                    </button>
+</div>
+</div>
+<!-- Charge Calculator / Flow Mapping -->
+<div class="grid grid-cols-2 gap-gutter">
+<div class="bg-surface-container border-border-thick border-outline-variant p-4">
+<h3 class="font-label-caps text-[10px] text-on-surface-variant mb-4">CHARGE_SIMULATOR</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-body-base text-on-surface">Target Charge</span>
+<span class="font-data-mono text-primary">100%</span>
+</div>
+<input class="w-full h-2 bg-surface-variant accent-primary-container cursor-pointer" type="range"/>
+<div class="bg-surface-container-lowest p-3 border-border-thick border-outline-variant">
+<p class="font-label-caps text-[10px] text-on-surface-variant">REACH_BY</p>
+<p class="font-data-mono text-on-surface">18:45 (T-minus 4h)</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container border-border-thick border-outline-variant p-4 flex flex-col justify-between">
+<div>
+<h3 class="font-label-caps text-[10px] text-on-surface-variant mb-2">STORM_WATCH_PROTOCOL</h3>
+<p class="text-body-base text-on-surface text-sm mb-4">Force charge to 100% and enable critical only.</p>
+</div>
+<button class="w-full py-3 hazard-pattern border-border-thick border-on-primary text-on-primary font-label-caps font-bold text-center tracking-widest active:scale-95 duration-75 transition-transform">
+                        ARM_STORM_WATCH
+                    </button>
+</div>
+</div>
+</section>
+<!-- Right Column: Output Channels -->
+<section class="col-span-12 md:col-span-3 space-y-gutter">
+<div class="bg-outline-variant px-4 py-1">
+<h2 class="font-label-caps text-label-caps text-on-surface">OUTPUT: CHANNELS</h2>
+</div>
+<!-- Output Channel 1 -->
+<div class="bg-surface-container border-border-thick border-outline-variant">
+<div class="p-4">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-caps text-[10px] text-on-surface-variant">CH_01: SMART_HOME</span>
+<span class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#ffb693]"></span>
+</span>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-headline-md text-on-surface">340</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W</span>
+</div>
+<div class="mt-4 flow-line h-unit w-full scale-x-[-1]"></div>
+</div>
+</div>
+<!-- Output Channel 2 -->
+<div class="bg-surface-container border-border-thick border-outline-variant">
+<div class="p-4">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-caps text-[10px] text-on-surface-variant">CH_02: WORKSTATION</span>
+<span class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#ffb693]"></span>
+</span>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-headline-md text-on-surface">410</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W</span>
+</div>
+<div class="mt-4 flow-line h-unit w-full scale-x-[-1]"></div>
+</div>
+</div>
+<!-- Output Channel 3 -->
+<div class="bg-surface-container border-border-thick border-outline-variant opacity-40">
+<div class="p-4">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-caps text-[10px] text-on-surface-variant">CH_03: KITCHEN_APP</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-headline-md text-on-surface-variant">0</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W</span>
+</div>
+</div>
+</div>
+<!-- Visual Graphic Section -->
+<div class="border-border-thick border-outline-variant overflow-hidden group">
+<img alt="Industrial data center infrastructure" class="w-full aspect-video object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" data-alt="A cinematic close-up shot of an industrial battery storage array featuring heavy-duty black metal casing and glowing orange LED status indicators. The lighting is moody and tactical, emphasizing the brushed metal textures and robust construction. The color palette is dominated by deep charcoals and safety oranges, creating an atmosphere of absolute reliability and technical precision in a modern high-tech utility facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7PA9d2rMpnq4MhEplhnOPFuuMQI-81-mjZEuWi2aK7-j01LgThBq22VbQMHzyAGwifLcBtCa4qb5kfnazTghgkSG3fotuMFxR2yRB665TbXUge5cUWMnbHCNTIL_xhOjMdZc4Z67u09YKsPAVlFCdsIRHwoll68DvEvaMNpEZ_lvaRMzPIffjffS321bBf5argbAbS9jk2YJyUJ-KPQPWiICGoaq46GhTUGkKbeoW7MthXBrIn_hnZ1IkIp2ivJ3zzFo46zLJcA0"/>
+<div class="p-3 bg-surface-container-low">
+<p class="font-label-caps text-[10px] text-on-surface">UNIT_LOC: SECTOR_4G_WEST</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Mobile Navigation Shell (BottomNavBar) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container border-t-thick border-outline dark:border-outline-variant flex justify-around items-center px-gutter py-2">
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary border-heavy border-on-primary-container p-2 ring-2 ring-primary-container" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps">MONITOR</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="battery_charging_full">battery_charging_full</span>
+<span class="font-label-caps text-label-caps">CHARGE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="electrical_services">electrical_services</span>
+<span class="font-label-caps text-label-caps">DEVICES</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="thunderstorm">thunderstorm</span>
+<span class="font-label-caps text-label-caps">STORM</span>
+</a>
+</nav>
+<!-- Contextual FAB for Monitoring Screen -->
+<button class="fixed bottom-24 right-6 md:bottom-8 md:right-8 bg-primary-container text-on-primary-container w-14 h-14 rounded-none border-border-heavy border-on-primary-container flex items-center justify-center shadow-[0_0_20px_#ff6b00] active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[32px]" data-icon="add_chart">add_chart</span>
+</button>
+</body></html>

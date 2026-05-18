@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VOLT_CORE v2.4 | Charge Calculator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#7a3000",
+                        "on-tertiary": "#313030",
+                        "on-primary": "#561f00",
+                        "surface-container-low": "#261812",
+                        "on-surface": "#f8ddd2",
+                        "inverse-primary": "#a04100",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-fixed": "#ffdbcc",
+                        "primary-container": "#ff6b00",
+                        "inverse-surface": "#f8ddd2",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#a98a7d",
+                        "outline-variant": "#5a4136",
+                        "on-secondary": "#2f3131",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-secondary-fixed-variant": "#454747",
+                        "primary": "#ffb693",
+                        "surface-variant": "#41312a",
+                        "inverse-on-surface": "#3d2d26",
+                        "background": "#1d100a",
+                        "tertiary-container": "#9a9898",
+                        "error": "#ffb4ab",
+                        "surface": "#1d100a",
+                        "secondary-container": "#454747",
+                        "on-primary-container": "#572000",
+                        "surface-container-lowest": "#170b06",
+                        "surface-container": "#2b1c16",
+                        "surface-dim": "#1d100a",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "surface-tint": "#ffb693",
+                        "primary-fixed-dim": "#ffb693",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#e5e2e1",
+                        "secondary": "#c6c6c7",
+                        "surface-bright": "#46362e",
+                        "on-surface-variant": "#e2bfb0",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-container-highest": "#41312a",
+                        "surface-container-high": "#362720",
+                        "on-tertiary-container": "#313131",
+                        "on-primary-fixed": "#351000",
+                        "tertiary": "#c8c6c5",
+                        "on-secondary-container": "#b4b5b5",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-background": "#f8ddd2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "border-thick": "2px",
+                        "border-heavy": "4px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-max": "1440px",
+                        "margin": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-base": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "headline-md": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "data-mono": ["18px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 24px;
+            background: #ffb693;
+            border: 2px solid #561f00;
+            cursor: pointer;
+            border-radius: 0;
+        }
+        .segmented-progress span {
+            height: 8px;
+            width: 100%;
+            background-color: #41312a;
+            border: 1px solid #1d100a;
+        }
+        .segmented-progress span.active {
+            background-color: #ffb693;
+            box-shadow: 0 0 8px #ffb693;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface border-b-thick border-outline sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter py-unit max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<h1 class="font-label-caps text-label-caps tracking-widest text-primary">VOLT_CORE v2.4</h1>
+</div>
+<button class="Active: scale-95 duration-75 transition-transform p-2 hover:bg-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="bluetooth_connected">bluetooth_connected</span>
+</button>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter py-margin space-y-gutter">
+<!-- Hero: Time to Full Countdown -->
+<section class="bg-surface-container border-thick border-outline-variant p-gutter">
+<div class="bg-surface-container-highest px-3 py-1 mb-gutter inline-block border-thick border-primary-container">
+<span class="font-label-caps text-label-caps text-primary-container">TIME TO FULL</span>
+</div>
+<div class="flex flex-col items-center justify-center py-6 border-thick border-outline-variant bg-surface-container-low relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="w-full h-full" style="background-image: repeating-linear-gradient(45deg, #ffb693 0, #ffb693 1px, transparent 0, transparent 50%); background-size: 10px 10px;"></div>
+</div>
+<div class="z-10 text-center">
+<span class="font-display-lg text-display-lg text-primary block">02:44:12</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">ESTIMATED COMPLETION</span>
+</div>
+</div>
+<!-- Segmented Progress Bar -->
+<div class="mt-gutter flex gap-1 segmented-progress">
+<span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span>
+<span class="active"></span><span class="active"></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+<div class="flex justify-between mt-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">35% SOC</span>
+<span class="font-label-caps text-label-caps text-primary">100% TARGET</span>
+</div>
+</section>
+<!-- Source Selector Toggle -->
+<section class="grid grid-cols-2 gap-thick border-heavy border-outline bg-outline">
+<button class="bg-primary text-on-primary py-4 flex flex-col items-center gap-2 ring-2 ring-primary-container">
+<span class="material-symbols-outlined" data-icon="sunny" data-weight="fill">sunny</span>
+<span class="font-label-caps text-label-caps">SOLAR INPUT</span>
+</button>
+<button class="bg-surface-container text-on-surface-variant py-4 flex flex-col items-center gap-2 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="electrical_services">electrical_services</span>
+<span class="font-label-caps text-label-caps">AC SHORE</span>
+</button>
+</section>
+<!-- Input Sliders -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Current Wattage -->
+<div class="bg-surface-container border-thick border-outline-variant p-gutter">
+<div class="flex justify-between items-center mb-margin">
+<span class="font-label-caps text-label-caps text-on-surface-variant">INPUT POWER</span>
+<span class="font-data-mono text-data-mono text-primary">420W</span>
+</div>
+<input class="w-full h-2 bg-surface-container-highest appearance-none cursor-pointer border-thick border-outline-variant" max="1000" min="0" type="range" value="420"/>
+<div class="flex justify-between mt-2">
+<span class="font-label-caps text-label-caps text-outline-variant">0W</span>
+<span class="font-label-caps text-label-caps text-outline-variant">1000W</span>
+</div>
+</div>
+<!-- Battery Health Card (Bento Style) -->
+<div class="bg-surface-container border-thick border-outline-variant relative overflow-hidden group">
+<div class="bg-surface-container-highest px-3 py-1 border-b-thick border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface">BATTERY_TEMP.ISO</span>
+</div>
+<div class="p-gutter flex items-center justify-between">
+<div>
+<div class="font-display-lg text-headline-md text-on-surface">32.4°C</div>
+<div class="flex items-center gap-1 mt-1">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#ffb693]"></span>
+<span class="font-label-caps text-label-caps text-primary">OPTIMAL</span>
+</div>
+</div>
+<img alt="Battery Hardware" class="w-20 h-20 object-cover border-thick border-outline grayscale" data-alt="A highly detailed, macro technical photograph of a high-capacity lithium battery cell terminal. The lighting is harsh and industrial, casting deep shadows that emphasize the brushed metal texture and copper connectors. The scene is dominated by a dark charcoal and safety orange color palette, reflecting a rugged and durable hardware aesthetic. Tiny etched serial numbers are visible on the surface, conveying a sense of precision engineering and absolute technical reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_PbvHcFjaqvdL4gIZoXIyhdyG7ROYnHS6UY5o81y_HnsJUZEfiM4clBaiCggk8wOyBHiTjIZO6E68DZn59UrSLGPrn9FluYcWtpIMLi7LoONSK_7MKfrEDeCERkqRdL6NvR03-kDji85pj9s4c8YCWGs5WqhvydqAwZGXVL-dwDOaXBzxbZAoPisrNKrAJvmVeeysBfzFloPvLAGv4WcaHVb0RNrudjNHaKaxuirIst2eMnbMIH0Pox-6aIId0lncmgTf0qk2ovw"/>
+</div>
+</div>
+</div>
+<!-- Technical Specs Table -->
+<section class="bg-surface-container border-thick border-outline-variant">
+<div class="bg-surface-container-highest px-3 py-1 border-b-thick border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface">SYSTEM_METRICS_V2</span>
+</div>
+<div class="p-0 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-thick border-outline-variant">
+<th class="p-gutter font-label-caps text-label-caps text-outline-variant">PARAMETER</th>
+<th class="p-gutter font-label-caps text-label-caps text-outline-variant">VALUE</th>
+<th class="p-gutter font-label-caps text-label-caps text-outline-variant">STATUS</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-body-base divide-y divide-outline-variant/30">
+<tr>
+<td class="p-gutter">EFFICIENCY</td>
+<td class="p-gutter text-primary">94.2%</td>
+<td class="p-gutter"><span class="text-on-tertiary bg-tertiary px-2 py-0.5 font-label-caps text-[10px]">NOMINAL</span></td>
+</tr>
+<tr>
+<td class="p-gutter">CELL_BALANCE</td>
+<td class="p-gutter">0.002V</td>
+<td class="p-gutter"><span class="text-on-primary bg-primary px-2 py-0.5 font-label-caps text-[10px]">LOCKED</span></td>
+</tr>
+<tr>
+<td class="p-gutter">CYCLE_COUNT</td>
+<td class="p-gutter">142</td>
+<td class="p-gutter"><span class="text-on-surface-variant border border-outline-variant px-2 py-0.5 font-label-caps text-[10px]">STABLE</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Tactical Button -->
+<button class="w-full bg-primary text-on-primary border-heavy border-on-primary-container py-4 font-label-caps text-label-caps Active: ring-2 ring-primary-container transition-all hover:brightness-110">
+            FORCE_SHUTDOWN_ARRAY
+        </button>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container border-t-thick border-outline fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-2">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-[10px] mt-1">MONITOR</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary border-heavy border-on-primary-container p-2 ring-2 ring-primary-container">
+<span class="material-symbols-outlined" data-icon="battery_charging_full" data-weight="fill">battery_charging_full</span>
+<span class="font-label-caps text-[10px] mt-1">CHARGE</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="electrical_services">electrical_services</span>
+<span class="font-label-caps text-[10px] mt-1">DEVICES</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="thunderstorm">thunderstorm</span>
+<span class="font-label-caps text-[10px] mt-1">STORM</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #1d100a;
+            color: #f8ddd2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .segmented-progress {
+            display: flex;
+            gap: 2px;
+            width: 100%;
+        }
+        .segment {
+            height: 8px;
+            flex-grow: 1;
+            background-color: #41312a;
+        }
+        .segment-active {
+            background-color: #ff6b00;
+            box-shadow: 0 0 8px #ff6b00;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#7a3000",
+                      "on-tertiary": "#313030",
+                      "on-primary": "#561f00",
+                      "surface-container-low": "#261812",
+                      "on-surface": "#f8ddd2",
+                      "inverse-primary": "#a04100",
+                      "secondary-fixed": "#e2e2e2",
+                      "primary-fixed": "#ffdbcc",
+                      "primary-container": "#ff6b00",
+                      "inverse-surface": "#f8ddd2",
+                      "on-error-container": "#ffdad6",
+                      "outline": "#a98a7d",
+                      "outline-variant": "#5a4136",
+                      "on-secondary": "#2f3131",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "on-secondary-fixed-variant": "#454747",
+                      "primary": "#ffb693",
+                      "surface-variant": "#41312a",
+                      "inverse-on-surface": "#3d2d26",
+                      "background": "#1d100a",
+                      "tertiary-container": "#9a9898",
+                      "error": "#ffb4ab",
+                      "surface": "#1d100a",
+                      "secondary-container": "#454747",
+                      "on-primary-container": "#572000",
+                      "surface-container-lowest": "#170b06",
+                      "surface-container": "#2b1c16",
+                      "surface-dim": "#1d100a",
+                      "error-container": "#93000a",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "surface-tint": "#ffb693",
+                      "primary-fixed-dim": "#ffb693",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-error": "#690005",
+                      "tertiary-fixed": "#e5e2e1",
+                      "secondary": "#c6c6c7",
+                      "surface-bright": "#46362e",
+                      "on-surface-variant": "#e2bfb0",
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "surface-container-highest": "#41312a",
+                      "surface-container-high": "#362720",
+                      "on-tertiary-container": "#313131",
+                      "on-primary-fixed": "#351000",
+                      "tertiary": "#c8c6c5",
+                      "on-secondary-container": "#b4b5b5",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "on-background": "#f8ddd2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "border-thick": "2px",
+                      "border-heavy": "4px",
+                      "unit": "4px",
+                      "gutter": "16px",
+                      "container-max": "1440px",
+                      "margin": "24px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "body-base": ["Inter"],
+                      "data-mono": ["Inter"],
+                      "headline-md": ["Space Grotesk"],
+                      "display-lg": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "body-base": ["16px", {"lineHeight": "1.5", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "data-mono": ["18px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface text-primary font-headline-md text-headline-md docked full-width top-0 border-b-thick border-outline mx-auto sticky z-50">
+<div class="flex justify-between items-center w-full px-gutter py-unit max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<span class="font-label-caps text-label-caps tracking-widest text-primary">VOLT_CORE v2.4</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">bluetooth_connected</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter mt-6">
+<!-- System Status Summary -->
+<div class="border-heavy border-outline-variant bg-surface-container p-gutter mb-6">
+<div class="flex justify-between items-end mb-4">
+<div>
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-1">CORE BATTERY RESERVE</h2>
+<div class="font-display-lg text-display-lg text-primary">84<span class="text-headline-md">%</span></div>
+</div>
+<div class="text-right">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-1">EST. DEPLETION</h2>
+<div class="font-data-mono text-data-mono text-primary">18H 42M</div>
+</div>
+</div>
+<div class="segmented-progress">
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment segment-active"></div>
+<div class="segment"></div>
+<div class="segment"></div>
+</div>
+</div>
+<!-- Search & Filter Tactical Bar -->
+<div class="flex gap-border-thick mb-6">
+<div class="relative flex-grow">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</div>
+<input class="w-full bg-surface-container-low border-b-thick border-outline-variant focus:border-primary py-3 pl-10 pr-4 font-label-caps text-label-caps text-on-surface outline-none placeholder:text-outline-variant" placeholder="SEARCH APPLIANCES..." type="text"/>
+</div>
+<button class="bg-surface-container-high border-thick border-outline-variant px-4 flex items-center justify-center Active:scale-95 duration-75 transition-transform">
+<span class="material-symbols-outlined text-primary">tune</span>
+</button>
+</div>
+<!-- Device Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- CPAP Machine -->
+<div class="bg-surface-container border-thick border-outline-variant overflow-hidden">
+<div class="h-6 bg-primary px-3 flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-on-primary">CRITICAL_MEDICAL</span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-on-primary shadow-[0_0_4px_#ffffff]"></span>
+<span class="font-label-caps text-[10px] text-on-primary">ACTIVE</span>
+</span>
+</div>
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-low border-thick border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">medical_services</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-none mb-1">CPAP MACHINE</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant">45W CONTINUOUS DRAW</p>
+</div>
+</div>
+<div class="border-t-thick border-outline-variant p-4 bg-surface-container-lowest">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">EST. RUNTIME</span>
+<span class="font-data-mono text-data-mono text-primary">14.2 HRS</span>
+</div>
+</div>
+</div>
+<!-- Mini Fridge -->
+<div class="bg-surface-container border-thick border-outline-variant overflow-hidden">
+<div class="h-6 bg-secondary-container px-3 flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-on-secondary-container">APPLIANCE_COOL</span>
+<span class="font-label-caps text-[10px] text-on-secondary-container">STANDBY</span>
+</div>
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-low border-thick border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">kitchen</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-none mb-1">MINI-FRIDGE</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant">80W PEAK / 15W AVG</p>
+</div>
+</div>
+<div class="border-t-thick border-outline-variant p-4 bg-surface-container-lowest">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">EST. RUNTIME</span>
+<span class="font-data-mono text-data-mono text-primary">28.5 HRS</span>
+</div>
+</div>
+</div>
+<!-- Laptop -->
+<div class="bg-surface-container border-thick border-outline-variant overflow-hidden">
+<div class="h-6 bg-secondary-container px-3 flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-on-secondary-container">COMPUTING_PWR</span>
+<span class="font-label-caps text-[10px] text-on-secondary-container">CHARGING</span>
+</div>
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-low border-thick border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">laptop</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-none mb-1">PRO LAPTOP</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant">65W FAST CHARGE</p>
+</div>
+</div>
+<div class="border-t-thick border-outline-variant p-4 bg-surface-container-lowest">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">FULL CHARGES</span>
+<span class="font-data-mono text-data-mono text-primary">12 CYCLES</span>
+</div>
+</div>
+</div>
+<!-- Mobile Phone -->
+<div class="bg-surface-container border-thick border-outline-variant overflow-hidden">
+<div class="h-6 bg-secondary-container px-3 flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-on-secondary-container">COMM_MOBILE</span>
+<span class="font-label-caps text-[10px] text-on-secondary-container">READY</span>
+</div>
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-low border-thick border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">smartphone</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-none mb-1">SMARTPHONE</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant">15W WIRELESS</p>
+</div>
+</div>
+<div class="border-t-thick border-outline-variant p-4 bg-surface-container-lowest">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">FULL CHARGES</span>
+<span class="font-data-mono text-data-mono text-primary">64 CYCLES</span>
+</div>
+</div>
+</div>
+<!-- Electric Kettle -->
+<div class="bg-surface-container border-thick border-outline-variant overflow-hidden opacity-75 grayscale">
+<div class="h-6 bg-error-container px-3 flex items-center justify-between">
+<span class="font-label-caps text-[10px] text-on-error-container">HIGH_DRAIN_WARN</span>
+<span class="font-label-caps text-[10px] text-on-error-container">INCOMPATIBLE</span>
+</div>
+<div class="p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-low border-thick border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-4xl">coffee_maker</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-md text-headline-md text-on-surface leading-none mb-1">E-KETTLE</h3>
+<p class="font-label-caps text-[10px] text-on-surface-variant">1500W PEAK DRAW</p>
+</div>
+</div>
+<div class="border-t-thick border-outline-variant p-4 bg-surface-container-lowest">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-error">EXCEEDS OUTPUT</span>
+<span class="font-data-mono text-data-mono text-error">0.0 HRS</span>
+</div>
+</div>
+</div>
+<!-- New Device Placeholder -->
+<div class="border-thick border-dashed border-outline-variant flex flex-col items-center justify-center p-8 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-2">add_circle</span>
+<span class="font-label-caps text-label-caps">REGISTER NEW DEVICE</span>
+</div>
+</div>
+<!-- Featured Hardware Image Section -->
+<section class="mt-12 border-heavy border-outline-variant overflow-hidden bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="p-gutter flex flex-col justify-center">
+<h2 class="font-display-lg text-primary mb-4 leading-tight">VOLT_CORE ARCHITECTURE</h2>
+<p class="font-body-base text-on-surface-variant mb-6">
+                        Engineered for extreme reliability, the v2.4 core utilizes high-density lithium-iron-phosphate cells integrated into a tactical-grade aluminum chassis. Monitor every watt in real-time with millisecond precision.
+                    </p>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps py-4 px-8 border-heavy border-on-primary-container self-start Active:scale-95 duration-75 transition-transform">
+                        DOWNLOAD FULL SCHEMATICS
+                    </button>
+</div>
+<div class="relative h-64 md:h-auto overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-tech industrial portable power station with a rugged tactical black exterior and bright safety orange accents. The device features multiple heavy-duty ports and a glowing digital display panel showing technical telemetry. It is set in a dimly lit, professional workshop environment with cool blue ambient lighting contrasting the warm orange highlights of the machine. The mood is one of advanced technical precision and durable industrial utility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5OCPAEqvLe4MC5eEGVWFWm4c5Kj_tgym4_PjwdYRLr-ZMDrzUvoGPOgmeU4xdiT5rN-kxuB8sPXHNn4eBD_NlxFyDD5NNNEhQyQZIB3cVJPV02D--zY-cYrkgu3sDGtwui76yMtWV6ui4epXhlAMamoDf-NWg5QQJK_BN8QCPXb2UxS44CYsQ9JgkwL9gocnJEYkcJIw2t3r5M5qCpvxInfWMKF7oN5c2r1ktzw24nDTIiHAlDZQ5_yCZmM2C4QWJZajsl_hHTco"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-transparent to-transparent"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-2 bg-surface-container border-t-thick border-outline">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-caps text-label-caps">MONITOR</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">battery_charging_full</span>
+<span class="font-label-caps text-label-caps">CHARGE</span>
+</div>
+<!-- Active Tab: DEVICES -->
+<div class="flex flex-col items-center justify-center bg-primary text-on-primary border-heavy border-on-primary-container p-2 ring-2 ring-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">electrical_services</span>
+<span class="font-label-caps text-label-caps">DEVICES</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">thunderstorm</span>
+<span class="font-label-caps text-label-caps">STORM</span>
+</div>
+</nav>
+</body></html>
